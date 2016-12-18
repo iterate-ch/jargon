@@ -5,7 +5,7 @@
 		<artifactId>jargon</artifactId>
 		<version>4.1.10.0-SNAPSHOT</version>
 	</parent>
-	<groupId>org.irods.jargon</groupId>
+	<groupId>ch.iterate.jargon</groupId>
 	<artifactId>jargon-ruleservice</artifactId>
 	<name>Jargon Rule Service</name>
 	<description>Extended support for processing and using iRODS rules</description>
@@ -16,7 +16,7 @@
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.irods.jargon</groupId>
+			<groupId>ch.iterate.jargon</groupId>
 			<artifactId>jargon-core</artifactId>
 			<scope>compile</scope>
 		</dependency>
