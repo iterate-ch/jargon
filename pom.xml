@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.irods</groupId>
+	<groupId>ch.iterate.jargon</groupId>
 	<artifactId>jargon</artifactId>
 	<packaging>pom</packaging>
 	<version>4.0.2.6-RELEASE</version>
@@ -72,17 +72,16 @@
 		</repository>
 	</repositories>
 	<distributionManagement>
-		<repository>
-			<id>internal.repo</id>
-			<name>internal.repo</name>
-			<url>file://${git.repo.root}/releases</url>
-		</repository>
-		<snapshotRepository>
-			<id>internal.repo.snapshot</id>
-			<name>internal.repo.snapshot</name>
-			<url>file://${git.repo.root}/snapshots</url>
-		</snapshotRepository>
-	</distributionManagement>
+     <repository>
+         <id>maven.cyberduck.io-release</id>
+         <url>s3://repo.maven.cyberduck.io/releases/</url>
+         <layout>default</layout>
+     </repository>
+     <snapshotRepository>
+         <id>maven.cyberduck.io-snapshot</id>
+         <url>s3://repo.maven.cyberduck.io/snapshots/</url>
+     </snapshotRepository>
+ </distributionManagement>
 	<reporting>
 		<plugins>
 			<plugin>
@@ -247,12 +246,12 @@
 				<version>2.2</version>
 			</dependency>
 			<dependency>
-				<groupId>org.irods.jargon</groupId>
+				<groupId>ch.iterate.jargon</groupId>
 				<artifactId>jargon-core</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>org.irods.jargon</groupId>
+				<groupId>ch.iterate.jargon</groupId>
 				<artifactId>jargon-data-utils</artifactId>
 				<version>${project.version}</version>
 			</dependency>
@@ -359,6 +358,13 @@
 		</dependency>
 	</dependencies>
 	<build>
+		<extensions>
+		  <extension>
+			  <groupId>org.springframework.build</groupId>
+			  <artifactId>aws-maven</artifactId>
+			  <version>5.0.0.RELEASE</version>
+		  </extension>
+		</extensions>
 		<pluginManagement>
 			<plugins>
 				<!--   <plugin>

@@ -6,7 +6,7 @@
     <groupId>org.irods</groupId>
 	<version>4.0.2.6-RELEASE</version>
   </parent>
-  <groupId>org.irods.jargon</groupId>
+  <groupId>ch.iterate.jargon</groupId>
   <artifactId>jargon-httpstream</artifactId> 
   <name>Jargon HttpStream</name>
   <url>http://maven.apache.org</url>
@@ -17,7 +17,7 @@
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.irods.jargon</groupId>
+			<groupId>ch.iterate.jargon</groupId>
 			<artifactId>jargon-core</artifactId>
 		</dependency>
 		<dependency>
