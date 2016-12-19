@@ -28,9 +28,9 @@
 		<url>https://code.renci.org/gf/project/jargon/tracker/</url>
 	</issueManagement>
 	<scm>
-		<connection>scm:git:ssh://${user.name}@code.renci.org/gitroot/jargon</connection>
-		<url>ssh://${user.name}@code.renci.org/gitroot/jargon</url>
-		<developerConnection>scm:git:ssh://${user.name}@code.renci.org/gitroot/jargon</developerConnection>
+		<connection>scm:git:git@github.com:iterate-ch/jargon.git</connection>
+		<url>git@github.com:iterate-ch/jargon.git</url>
+		<developerConnection>scm:git:git@github.com:iterate-ch/jargon.git</developerConnection>
 	</scm>
 	<organization>
 		<name>DICE</name>
