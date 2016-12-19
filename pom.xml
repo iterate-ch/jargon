@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>ch.iterate.jargon</groupId>
 	<artifactId>jargon</artifactId>
 	<packaging>pom</packaging>
-	<version>4.1.10.0-SNAPSHOT</version>
+	<version>4.1.10.0</version>
 	<name>Jargon</name>
 	<description>Core Java API and related libraries for iRODS</description>
 	<url>https://github.com/DICE-UNC/jargon</url>
@@ -32,7 +31,8 @@
 		<connection>scm:git:git@github.com:iterate-ch/jargon.git</connection>
 		<url>git@github.com:iterate-ch/jargon.git</url>
 		<developerConnection>scm:git:git@github.com:iterate-ch/jargon.git</developerConnection>
-	</scm>
+	  <tag>jargon-4.1.10.0</tag>
+  </scm>
 	<organization>
 		<name>DICE</name>
 		<url>http://www.irods.org</url>
