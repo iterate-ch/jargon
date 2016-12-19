@@ -101,6 +101,8 @@
 			<plugin>
 				<artifactId>maven-javadoc-plugin</artifactId>
 				<configuration>
+					<additionalparam>-Xdoclint:none</additionalparam>
+					 <encoding>UTF-8</encoding>
 					<links>
 						<link>http://download.oracle.com/javase/6/docs/api/</link>
 						<link>http://commons.apache.org/logging/apidocs/</link>
