@@ -2,12 +2,12 @@
 # Project: Jargon-core API
 #### Date: 
 #### Release Version:
-#### git tag: 4.1.10.0-SNAPSHOT
+#### git tag: 4.1.10.0-RC1
 #### Developer: Mike Conway - DICE
 
 ## News
 
-4.1.10 Release compatability relese
+4.1.10 Release compatability release candidate
 for milestone: https://github.com/DICE-UNC/jargon/milestone/11
 
 This includes support for client-server negotiation and SSL encryption of transport
@@ -82,9 +82,43 @@ Simplified the buffering code and added unit and functional tests, especially fo
 Testing with CyberDuck.  Added a new IRODSAccessObjectFactory.authenticateIRODSAccountUtilizingCachedConnectionIfPresent to avoid double-opening a connection, reducing side effects
 for some usage patterns.
 
+#### add checksum support to Jargon streaming API #194
+
+Added support for checksumming on close of an IRODSFileOutputStream, respecting checksum and checksum with verification flags in jargon.properties.  If either of those flags is true,
+a checksum is computed and stored in iRODS.  Given the nature of the java.io API, actual verification is not done, just computation and storage in the iCAT.
+
+#### PAM auth failure when password includes semicolon #195
+
+Added KVP packing instruction support to escape ; character in PAM password, added unit test verification
+
+#### failing parallel file operation should throw exception #133
+
+pending...consider adding a fail fast option...
+
+#### improve logging in CollectionAndDataObjectListAndSearchAOImpl #135
+
+Added toString methods to result set and result row, limited debug logging of result rows to 100 rows.  Fixed a typo in the logging statement for collection listings.
+
+#### iRODS CS_NEG_REQUIRE + PAM authentication #215
+
+Fixed mismatch between local SSL negotiation stance enum values and iRODS negotiation enum values.
+
+#### "Catalog SQL error" in jargon-core when using Oracle #196
+Replicated issue, identified as iRODS server issue, due to missing specific queries.  For cat sql errors when checking group authorization, a 'specific_query_patch-bug196.sh' demonstrates a repair to a 4.1.x iRODS installation with Oracle iCAT.  See https://github.com/DICE-UNC/jargon/issues/196 for details.
+
 
 ### Additional testing for reported issues, minor changes
 
 #### Login fails if password contains linux escape characters #202 
+
+Added test cases, fails to replicate
+
+#### transfer get of file with parens and spaces in name gives file not found #1 
+
+Added test case that fails to replicate
+
+
+
+
 
 
