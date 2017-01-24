@@ -179,7 +179,7 @@ public class IRODSSimpleConnectionTest {
 			}
 
 			Assert.assertTrue("should be no conns in map", fs.getIrodsSession()
-					.getIRODSCommandsMap() == null);
+					.getIrodsConnectionManager() == null);
 		}
 
 	}
