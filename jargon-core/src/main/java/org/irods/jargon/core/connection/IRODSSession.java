@@ -458,9 +458,8 @@ public class IRODSSession {
 	 * @return
 	 * @throws JargonException
 	 */
-	private AbstractIRODSMidLevelProtocol connectAndAddToProtocolsMap(
-			final IRODSAccount irodsAccount,
-			final Map<String, AbstractIRODSMidLevelProtocol> irodsProtocols)
+	private AbstractIRODSMidLevelProtocol connect(
+			final IRODSAccount irodsAccount)
 			throws JargonException {
 		AbstractIRODSMidLevelProtocol irodsProtocol;
 		irodsProtocol = irodsProtocolManager.getIRODSProtocol(irodsAccount,
@@ -730,16 +729,4 @@ public class IRODSSession {
 			final AbstractRestartManager restartManager) {
 		this.restartManager = restartManager;
 	}
-
-	/**
-	 * Retrieve an instance of SSL connection utilities that can manage SSL
-	 * connections to iRODS
-	 *
-	 * @return
-	 */
-	SslConnectionUtilities instanceSslConnectionUtilities() {
-		return new SslConnectionUtilities(this);
-
-	}
-
 }
