@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>ch.iterate.jargon</groupId>
 		<artifactId>jargon</artifactId>
-		<version>4.1.10.6</version>
+		<version>4.1.10.7-SNAPSHOT</version>
 	</parent>
 	<groupId>ch.iterate.jargon</groupId>
 	<artifactId>jargon-ticket</artifactId>
