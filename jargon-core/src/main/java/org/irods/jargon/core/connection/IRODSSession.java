@@ -329,7 +329,7 @@ public class IRODSSession {
 	 * dependency injection. Look to see this deprecated.
 	 *
 	 * @param irodsConnectionManager
-	 * @return
+	 * @return {@link IRODSSession}
 	 * @throws JargonException
 	 */
 
@@ -685,7 +685,7 @@ public class IRODSSession {
 	 * micro-services, or remote command scripts are not available to do an
 	 * operation.
 	 *
-	 * @return
+	 * @return {@link DiscoveredServerPropertiesCache}
 	 */
 	public DiscoveredServerPropertiesCache getDiscoveredServerPropertiesCache() {
 		return discoveredServerPropertiesCache;
@@ -695,7 +695,7 @@ public class IRODSSession {
 	 * Handy method to see if we're using the dynamic server properties cache.
 	 * This is set in the jargon properties.
 	 *
-	 * @return
+	 * @return <code>boolean</code>
 	 */
 	public boolean isUsingDynamicServerPropertiesCache() {
 		// getjargonProperties is already sync'd
