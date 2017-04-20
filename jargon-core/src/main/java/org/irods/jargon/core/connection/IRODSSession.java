@@ -347,40 +347,18 @@ public class IRODSSession {
 			throw new IllegalArgumentException("irodsAccount is null");
 		}
 
-		AbstractIRODSMidLevelProtocol irodsProtocol = null;
-
-		Map<String, AbstractIRODSMidLevelProtocol> irodsProtocols = sessionMap
-				.get();
-
-		if (irodsProtocols == null) {
-			log.debug("no connections are cached, so create a new cache map");
-			irodsProtocols = new HashMap<String, AbstractIRODSMidLevelProtocol>();
-			irodsProtocol = connectAndAddToProtocolsMap(irodsAccount,
-					irodsProtocols);
-			log.debug("put a reference to a new connection for account: {}",
-					irodsAccount.toString());
-			sessionMap.set(irodsProtocols);
-			return irodsProtocol;
-		}
-
-		// there is a protocol map, look up the connection for this account
-
-		irodsProtocol = irodsProtocols.get(irodsAccount.toString());
-
-		if (irodsProtocol == null) {
-			log.debug("null connection in thread local, using IRODSConnectionManager to create a new connection");
-			irodsProtocol = connectAndAddToProtocolsMap(irodsAccount,
-					irodsProtocols);
-		} else if (irodsProtocol.isConnected()) {
+		if (irodsMidLevelProtocol == null) {
+			irodsMidLevelProtocol = connect(irodsAccount);
+			return irodsMidLevelProtocol;
+		} else if (irodsMidLevelProtocol.isConnected()) {
 
 			log.debug("session using previously established connection:{}",
-					irodsProtocol);
+					irodsMidLevelProtocol);
 		} else {
 			log.warn(
 					"***************** session has a connection marked closed, create a new one and put back into the cache:{}",
-					irodsProtocol);
-			irodsProtocol = connectAndAddToProtocolsMap(irodsAccount,
-					irodsProtocols);
+					irodsMidLevelProtocol);
+			irodsMidLevelProtocol = connect(irodsAccount);
 		}
 
 		return irodsMidLevelProtocol;
@@ -456,9 +434,7 @@ public class IRODSSession {
 	 * @return
 	 * @throws JargonException
 	 */
-	private AbstractIRODSMidLevelProtocol connectAndAddToProtocolsMap(
-			final IRODSAccount irodsAccount,
-			final Map<String, AbstractIRODSMidLevelProtocol> irodsProtocols)
+	private AbstractIRODSMidLevelProtocol connect(final IRODSAccount irodsAccount)
 			throws JargonException {
 		AbstractIRODSMidLevelProtocol irodsProtocol;
 		irodsProtocol = irodsProtocolManager.getIRODSProtocol(irodsAccount,
@@ -476,9 +452,6 @@ public class IRODSSession {
 			addUserInfoForGSIAccount(irodsAccount, irodsProtocol);
 		}
 
-		log.debug("put a reference to a new connection for account: {}",
-				irodsAccount.toString());
-		sessionMap.set(irodsProtocols);
 		log.debug("returned new connection:{}", irodsProtocol);
 		return irodsProtocol;
 	}
@@ -557,17 +530,6 @@ public class IRODSSession {
 			throw new IllegalArgumentException("null irodsAccount");
 		}
 
-		log.debug("closing irods session for: {}", irodsAccount.toString());
-		final Map<String, AbstractIRODSMidLevelProtocol> irodsProtocols = sessionMap
-				.get();
-		if (irodsProtocols == null) {
-			log.warn("closing session that is already closed, silently ignore");
-			return;
-		}
-
-		final AbstractIRODSMidLevelProtocol irodsMidLevelProtocol = irodsProtocols
-				.get(irodsAccount.toString());
-
 		if (irodsMidLevelProtocol == null) {
 			log.warn("closing a connection that is not held, silently ignore");
 			return;
@@ -592,18 +554,8 @@ public class IRODSSession {
 	 */
 	public void discardSessionForErrors(final IRODSAccount irodsAccount) {
 		log.warn("discarding irods session for: {}", irodsAccount.toString());
-		final Map<String, AbstractIRODSMidLevelProtocol> irodsProtocols = sessionMap
-				.get();
-		if (irodsProtocols == null) {
-			log.warn("discarding session that is already closed, silently ignore");
-			return;
-		}
-		AbstractIRODSMidLevelProtocol badConnection;
-		badConnection = irodsProtocols.get(irodsAccount.toString());
-		if (badConnection != null) {
-			getIrodsProtocolManager().returnWithForce(badConnection);
-			irodsProtocols.remove(irodsAccount.toString());
-		}
+        getIrodsProtocolManager().returnWithForce(irodsMidLevelProtocol);
+	}
 
 	public AbstractIRODSMidLevelProtocol getIrodsMidLevelProtocol() {
 		return irodsMidLevelProtocol;
