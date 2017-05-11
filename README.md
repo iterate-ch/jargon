@@ -1,14 +1,14 @@
 
 # Project: Jargon-core API
-#### Date: 2/9/2017 
-#### Release Version: 4.2.0.0-SNAPSHOT 
+#### Date:  
+#### Release Version: 4.2.0.1-SNAPSHOT 
 #### git tag: 
 #### Developer: Mike Conway - DICE
 
 ## News
 
 4.2.0 Compatability and maintenance
-for milestone: https://github.com/DICE-UNC/jargon/milestone/16
+for milestone: https://github.com/DICE-UNC/jargon/milestone/19
 
 
 =======
@@ -40,18 +40,3 @@ Note that the following bug and feature requests are logged in GForge with relat
 
 ## Changes
 
-#### fix javadoc gen issues #230
-
-Clean up javadocs to allow generation via Maven
-
-#### Performance regression in 4.1.10.0-RELEASE #243
-
-Removed extra flush behavior that was an artifact of previous iRODS versions.  Have begun to deemphasize 3.3.1 through 4.0 iRODS server versions.
-
-#### Fix usage of SSL socket factory from custom context. #242
-
-Fix provided by pull request.
-
-#### Connection pooling implementation #225
-
-Initial implementation of commons-pool for connections
